@@ -34,7 +34,7 @@ fn parse1(input: &str) -> usize {
     gamma_rate * epsilon_rate
 }
 
-fn oxigen(input: &str, most_common: bool) -> usize {
+fn parse(input: &str, most_common: bool) -> usize {
     let mut lines: Vec<_> = input.lines().collect();
     let mut line_count = lines.iter().count();
     let line_len = input.lines().take(1).next().unwrap().len();
@@ -87,8 +87,8 @@ fn oxigen(input: &str, most_common: bool) -> usize {
 }
 
 fn parse2(input: &str) -> usize {
-    let ox = oxigen(input, true);
-    let co2 = oxigen(input, false);
+    let ox = parse(input, true);
+    let co2 = parse(input, false);
     ox * co2
 }
 
@@ -116,10 +116,6 @@ mod test {
 
     #[test]
     fn part2() {
-        assert_eq!(
-            usize::from_str_radix("000001011011", 2).unwrap(),
-            64 + 16 + 8 + 2 + 1
-        );
         assert_eq!(parse2(TEST_INPUT), 230);
     }
 }
