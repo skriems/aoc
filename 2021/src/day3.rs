@@ -37,11 +37,9 @@ fn parse1(input: &str) -> usize {
 fn parse(input: &str, most_common: bool) -> usize {
     let mut lines: Vec<_> = input.lines().collect();
     let mut line_count = lines.iter().count();
-    let line_len = input.lines().take(1).next().unwrap().len();
 
     let mut index = 0;
-
-    while index < line_len && line_count > 1 {
+    while line_count > 1 {
         let ones = lines.iter().fold(0, |acc, line| {
             if line.chars().nth(index).unwrap().to_string() == "1" {
                 acc + 1
@@ -70,19 +68,19 @@ fn parse(input: &str, most_common: bool) -> usize {
             .filter(|line| line.chars().nth(index).unwrap().to_string() == wanted)
             .collect();
 
-        println!(
-            "iteration {:>2?}: lines:{:>4?}, zeros:{:>3?}, ones:{:>3?}, wanted:{:?}",
-            &index + 1,
-            &line_count,
-            &zeros,
-            &ones,
-            &wanted
-        );
+        // println!(
+        //     "iteration {:>2?}: lines:{:>4?}, zeros:{:>3?}, ones:{:>3?}, wanted:{:?}",
+        //     &index + 1,
+        //     &line_count,
+        //     &zeros,
+        //     &ones,
+        //     &wanted
+        // );
         line_count = lines.iter().count();
         index += 1;
     }
     let parsed = usize::from_str_radix(lines[0], 2).unwrap();
-    println!("found: {:?} or {:?}", lines[0], &parsed);
+    // println!("found: {:?} or {:?}", lines[0], &parsed);
     parsed
 }
 
